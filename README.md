@@ -465,6 +465,20 @@ Penjelasan Singkat :
 <br>File edit.php merupakan halaman View yang digunakan untuk mengubah (update) data menu yang sudah ada di dalam database. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan form yang rapi dan responsif. Berbeda dengan halaman create, form pada halaman ini sudah terisi otomatis (pre-populated) dengan data yang diambil dari database melalui variabel $menu yang dikirim oleh controller. Proses update dilakukan menggunakan AJAX sehingga tidak memerlukan reload halaman, serta memanfaatkan SweetAlert2 untuk memberikan notifikasi kepada pengguna.
 
 ## 3. Penjelasan Cara Kerja Aplikasi
+Berikut merupakan cara kerja aplikasi berdasarkan masing-masing operasi CRUD (Create, Read, Update, Delete)
+
+### Operasi Read
+Pada operasi Read (menampilkan data), proses terjadi ketika pengguna membuka halaman index.php. Di halaman ini, tabel tidak diisi secara statis, melainkan menggunakan DataTables yang diinisialisasi dengan $('#tabelMenu').DataTable({ ... }). DataTables secara otomatis mengirimkan request AJAX ke endpoint /menu/get_data_json melalui konfigurasi "ajax": { "url": "/menu/get_data_json" }. Endpoint ini ditangani oleh controller pada method get_data_json(), yang mengambil seluruh data dari database menggunakan $this->menuModel->findAll(). Method ini secara internal menjalankan query SELECT * FROM menu. Data yang diperoleh kemudian dikembalikan dalam format JSON menggunakan $this->response->setJSON($data). DataTables menerima JSON tersebut dan memetakannya ke kolom tabel sesuai konfigurasi "columns": [...], sehingga data dapat ditampilkan secara dinamis lengkap dengan fitur pencarian, pagination, dan formatting.
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
+
+### Operasi Create
+...
+
+### Operasi Edit
+...
+
+### Operasi Delete
 ...
 
 ## Kesimpulan
