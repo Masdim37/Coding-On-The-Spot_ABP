@@ -124,7 +124,7 @@ $routes->post('/menu/update/(:num)', 'menu::update/$1');
 $routes->delete('/menu/delete/(:num)', 'menu::delete/$1');
 ```
 Penjelasan singkat :
-<br>File ini bertugas sebagai routing aplikasi. URL yang diakses oleh pengguna (seperti /menu/create atau /menu/store) dipetakan secara spesifik ke fungsi-fungsi (method) yang ada di dalam menu.php (Controller). Rute ini menggunakan berbagai metode HTTP HTTP seperti GET, POST, dan DELETE sesuai dengan prinsip RESTful.
+<br>File ini bertugas sebagai routing aplikasi. URL yang diakses oleh pengguna (seperti /menu/create atau /menu/store) dipetakan secara spesifik ke fungsi-fungsi (method) yang ada di dalam menu.php (Controller). Rute ini menggunakan berbagai metode HTTP seperti GET, POST, dan DELETE sesuai dengan prinsip RESTful.
 
 ### menu.php (file controller)
 ```php
@@ -187,7 +187,16 @@ class Menu extends BaseController {
 }
 ```
 Penjelasan Singkat :
-<br>File menu.php adalah file controller yang menghubungkan Model dan View. File ini memuat fungsi-fungsi penting yag digunakan antara lain index() untuk menampilkan halaman awal, get_data_json() untuk mengirim data tabel dalam format JSON ke DataTables, serta fungsi-fungsi CRUD  yang mengembalikan response berbasis JSON agar dapat ditangkap oleh sistem AJAX di sisi client seperti create() untuk menampilkan halaman tanbah stok (create.php), store() untuk menyimpan data ..., edit() untuk ..., update() untuk ..., dan delete() untuk ...
+<br>File menu.php adalah file controller dalam arsitektur MVC (Model-View-Controller) yang berfungsi sebagai penghubung antara Model (MenuModel) dan View. Controller ini menangani alur logika aplikasi, menerima request dari client, memproses data melalui model, dan mengembalikan response ke view atau dalam bentuk JSON (untuk AJAX).
+Terdapat beberapa function antara lain :
+- index(); digunakan untuk menampilkan halaman utama menu (menu/index)
+- get_data_json(); digunakan untuk mengambil seluruh data menu dari database melalui model, lalu mengirimkannya dalam format JSON ke DataTables
+- create(); digunakan untuk menampilkan halaman form tambah data (menu/create)
+- store(); digunakan untuk menerima data dari form (POST), lalu menyimpannya ke database menggunakan method save()
+- edit($id); digunakan untuk mengambil data berdasarkan ID tertentu, lalu mengirimkannya ke halaman edit (menu/edit)
+- update($id); digunakan untuk menerima data hasil edit, kemudian memperbarui data di database berdasarkan ID
+- delete($id); digunakan untuk menghapus data menu berdasarkan ID
+
 
 ### menuModel.php (file model)
 ```php
@@ -205,7 +214,7 @@ class MenuModel extends Model{
 }
 ```
 Penjelasan Singkat :
-<br>File menuModel.php adalah file model yang bertanggung jawab atas seluruh komunikasi langsung dengan basis data (MySQL). pada file ini dideklarasikan bahwa aplikasi akan menggunakan tabel bernama menu dengan primary key menuID. Atribut allowedFields membatasi kolom apa saja yang diizinkan untuk dimanipulasi (diisi atau diubah) oleh aplikasi, yaitu namaMenu, kategori, harga, dan stok, yang berfungsi sebagai sistem keamanan dari manipulasi data ilegal.
+<br>File menuModel.php adalah file model dalam arsitektur MVC yang bertanggung jawab atas seluruh komunikasi langsung dengan database (MySQL). Model ini digunakan oleh controller (menu.php) untuk melakukan operasi CRUD (Create, Read, Update, Delete) tanpa harus menuliskan query SQL secara manual. Pada file ini dideklarasikan bahwa aplikasi menggunakan tabel menu dengan primary key menuID. Selain itu, atribut allowedFields berfungsi untuk membatasi kolom yang boleh dimanipulasi oleh aplikasi, yaitu namaMenu, kategori, harga, dan stok, sehingga memberikan perlindungan terhadap manipulasi data yang tidak sah (mass assignment protection).
 
 ### index.php (file view halaman utama)
 ```php
@@ -309,7 +318,7 @@ $(document).ready(function() {
 </html>
 ```
 Penjelasan Singkat :
-<br>File index.php adalah halaman yang dilihat pengguna, dibangun dengan kerangka Bootstrap 5. Halaman ini menginisialisasi library jQuery DataTables untuk memuat data JSON dari server dan menampilkannya sebagai tabel interaktif yang memiliki fitur pencarian serta pagination otomatis. Di file ini juga terdapat script AJAX dan SweetAlert2 yang berfungsi untuk mengeksekusi operasi penghapusan data secara latar belakang (asynchronous) tanpa memuat ulang halaman utama.
+<br>File index.php merupakan halaman utama (View) yang ditampilkan kepada pengguna dalam sistem manajemen stok. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan antarmuka yang responsif dan modern. Selain itu, halaman ini mengintegrasikan jQuery DataTables (plugin jQuery) untuk menampilkan data dalam bentuk tabel interaktif, serta menggunakan AJAX dan SweetAlert2 untuk menangani operasi data secara asynchronous tanpa perlu melakukan reload halaman.
 
 ### create.php (file view halaman create/tambah stok)
 ``` php
@@ -379,7 +388,7 @@ $(document).ready(function() {
 </html>
 ```
 Penjelasan Singkat : 
-<br>File create.php adalah halaman formulir penambahan menu baru. Daripada menggunakan metode formulir konvensional (action="POST"), halaman ini mencegat event submit menggunakan fungsi JavaScript e.preventDefault(), mengumpulkan data formulir dengan fungsi serialize(), dan mengirimkannya ke URL /menu/store melalui AJAX. Setelah server merespons sukses, sistem menampilkan notifikasi SweetAlert sebelum mengembalikan pengguna ke halaman indeks.
+<br>File create.php merupakan halaman View yang digunakan untuk menambahkan data menu baru ke dalam sistem. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan form yang rapi dan responsif. Berbeda dengan metode form konvensional yang menggunakan action="POST", halaman ini memanfaatkan AJAX (Asynchronous JavaScript and XML) untuk mengirim data secara asynchronous tanpa reload halaman, serta menggunakan SweetAlert2 untuk memberikan notifikasi yang lebih interaktif kepada pengguna.
 
 ### edit.php (file view halaman edit stok)
 ```php
@@ -453,9 +462,9 @@ $(document).ready(function() {
 </html>
 ```
 Penjelasan Singkat : 
-<br>File edit.php adalah halaman formulir edit data suatu menu. Formulir di halaman ini sudah diisi secara otomatis (pre-populated) dengan rekaman data yang ada pada database (melalui variabel $menu). Saat pengguna menekan "Update Data", skrip AJAX mengirimkan perubahan tersebut ke endpoint pembaruan data /menu/update/ID_MENU.
+<br>File edit.php merupakan halaman View yang digunakan untuk mengubah (update) data menu yang sudah ada di dalam database. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan form yang rapi dan responsif. Berbeda dengan halaman create, form pada halaman ini sudah terisi otomatis (pre-populated) dengan data yang diambil dari database melalui variabel $menu yang dikirim oleh controller. Proses update dilakukan menggunakan AJAX sehingga tidak memerlukan reload halaman, serta memanfaatkan SweetAlert2 untuk memberikan notifikasi kepada pengguna.
 
-## 3. Penjelasan Implementasi Sistem Manajemen Stok
+## 3. Penjelasan Cara Kerja Aplikasi
 ...
 
 ## Kesimpulan
