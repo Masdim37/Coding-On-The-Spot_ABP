@@ -468,32 +468,46 @@ Penjelasan Singkat :
 Berikut merupakan cara kerja aplikasi berdasarkan masing-masing operasi CRUD (Create, Read, Update, Delete)
 
 ### Operasi Read
-Pada operasi Read (menampilkan data), proses terjadi ketika pengguna membuka halaman index.php. Di halaman ini, tabel tidak diisi secara statis, melainkan menggunakan DataTables yang diinisialisasi dengan `$('#tabelMenu').DataTable({ ... })`. DataTables secara otomatis mengirimkan request AJAX ke endpoint /menu/get_data_json melalui konfigurasi `"ajax": { "url": "/menu/get_data_json" }`. Endpoint ini ditangani oleh controller pada method `get_data_json()`, yang mengambil seluruh data dari database menggunakan `$this->menuModel->findAll()`. Method ini secara internal menjalankan query `SELECT * FROM menu`. Data yang diperoleh kemudian dikembalikan dalam format JSON menggunakan `$this->response->setJSON($data)`. DataTables menerima JSON tersebut dan memetakannya ke kolom tabel sesuai konfigurasi `"columns": [...]`, sehingga data dapat ditampilkan secara dinamis lengkap dengan fitur pencarian, pagination, dan formatting.
+Pada operasi Read (menampilkan data), proses terjadi ketika pengguna membuka halaman `index.php`. Di halaman ini, tabel tidak diisi secara statis, melainkan menggunakan DataTables yang diinisialisasi dengan `$('#tabelMenu').DataTable({ ... })`. DataTables secara otomatis mengirimkan request AJAX ke endpoint `/menu/get_data_json` melalui konfigurasi `"ajax": { "url": "/menu/get_data_json" }`. Endpoint ini ditangani oleh controller pada method `get_data_json()`, yang mengambil seluruh data dari database menggunakan `$this->menuModel->findAll()`. Method ini secara internal menjalankan query `SELECT * FROM menu`. Data yang diperoleh kemudian dikembalikan dalam format JSON menggunakan `$this->response->setJSON($data)`. DataTables menerima JSON tersebut dan memetakannya ke kolom tabel sesuai konfigurasi `"columns": [...]`, sehingga data dapat ditampilkan secara dinamis lengkap dengan fitur pencarian, pagination, dan formatting.
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
+![Tampilan Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
 
 ### Operasi Create
-Pada operasi Create (penambahan data), proses dimulai ketika pengguna mengakses halaman create.php yang berisi formulir input data menu. Form tersebut didefinisikan dengan `<form id="formTambah">` dan tidak menggunakan metode submit konvensional. Saat tombol submit ditekan, event tersebut dicegat menggunakan JavaScript `$('#formTambah').submit(function(e) { e.preventDefault(); })` sehingga halaman tidak melakukan reload. Data dari seluruh input kemudian dikumpulkan menggunakan `$(this).serialize()` dan dikirimkan melalui AJAX dengan `$.ajax({ url: '/menu/store', type: 'POST' })`. Request ini diterima oleh controller pada method `store()`, yang mengambil data menggunakan `$this->request->getPost()` lalu menyimpannya ke database melalui `$this->menuModel->save([...])`. Penyimpanan ini dibatasi oleh properti `$allowedFields` pada model untuk keamanan. Setelah data berhasil disimpan, controller mengembalikan response JSON yang kemudian ditangkap oleh frontend untuk menampilkan notifikasi menggunakan SweetAlert dan mengarahkan kembali pengguna ke halaman utama.
+Pada operasi Create (penambahan data), proses dimulai ketika pengguna mengakses halaman `create.php` yang berisi formulir input data menu. Form tersebut didefinisikan dengan `<form id="formTambah">` dan tidak menggunakan metode submit konvensional. Saat tombol submit ditekan, event tersebut dicegat menggunakan JavaScript `$('#formTambah').submit(function(e) { e.preventDefault(); })` sehingga halaman tidak melakukan reload. Data dari seluruh input kemudian dikumpulkan menggunakan `$(this).serialize()` dan dikirimkan melalui AJAX dengan `$.ajax({ url: '/menu/store', type: 'POST' })`. Request ini diterima oleh controller pada method `store()`, yang mengambil data menggunakan `$this->request->getPost()` lalu menyimpannya ke database melalui `$this->menuModel->save([...])`. Penyimpanan ini dibatasi oleh properti `$allowedFields` pada model untuk keamanan. Setelah data berhasil disimpan, controller mengembalikan response JSON yang kemudian ditangkap oleh frontend untuk menampilkan notifikasi menggunakan SweetAlert dan mengarahkan kembali pengguna ke halaman utama.
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
+![Tampilan Home Sebelum Create](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateBefore.png)
+![Tampilan Create Before](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateBefore.png)
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateAfter.png)
+![Tampilan Create After](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateAfter.png)
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateNotif.png)
+![Tampilan Pop Up Setelah Create](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateNotif.png)
 
-![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterCreate.png)
+![Tampilan Home Setelah Create](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterCreate.png)
 
+### Operasi Update
+Pada operasi Update (mengubah data), proses diawali ketika pengguna menekan tombol edit yang mengarah ke `/menu/edit/{id}`. Controller kemudian mengambil data berdasarkan ID menggunakan `$this->menuModel->find($id)` dan mengirimkannya ke view `edit.php`. Di halaman ini, form sudah terisi otomatis (pre-populated), misalnya pada input `<input value="<?= $menu['namaMenu'] ?>">`. Saat pengguna menekan tombol update, event submit kembali dicegat dengan `e.preventDefault()`, lalu data dikirim menggunakan AJAX ke endpoint `/menu/update/{id}` melalui `$.ajax({ url: '/menu/update/ID', type: 'POST' })`. Controller menerima data tersebut dalam method `update($id)` dan memperbarui data menggunakan `$this->menuModel->update($id, [...])`, yang secara otomatis menjalankan query `UPDATE menu SET ... WHERE menuID = id`. Setelah proses selesai, controller mengirimkan response JSON yang ditampilkan dalam bentuk notifikasi SweetAlert, kemudian pengguna diarahkan kembali ke halaman utama.
 
+![Tampilan Home Sebelum Update](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeBeforeEdit.png)
 
+![Tampilan Update Before](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanEditBefore.png)
 
+![Tampilan Update After](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanEditAfter.png)
 
-### Operasi Edit
-...
+![Tampilan Pop Up Setelah Update](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanEditNotif.png)
+
+![Tampilan Home Setelah Update](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterEdit.png)
 
 ### Operasi Delete
-...
+Pada operasi Delete (menghapus data), proses dimulai ketika pengguna menekan tombol hapus pada tabel di halaman `index.php`, yang dibuat dengan `<button class="btn-hapus" data-id="...">`. Event klik ditangani menggunakan `$('#tabelMenu').on('click', '.btn-hapus', function() { ... })`, lalu sistem mengambil ID data melalui `$(this).data('id')`. Sebelum penghapusan dilakukan, sistem menampilkan konfirmasi menggunakan SweetAlert `(Swal.fire({...}))`. Jika pengguna menyetujui, maka AJAX akan mengirim request DELETE ke `/menu/delete/{id}` dengan `$.ajax({ url: '/menu/delete/' + id, type: 'DELETE' })`. Controller menangani request ini pada method `delete($id)` dan menghapus data menggunakan `$this->menuModel->delete($id)`, yang menjalankan query `DELETE FROM menu WHERE menuID = id`. Setelah berhasil, response JSON dikirim kembali dan DataTables diperbarui secara otomatis menggunakan `table.ajax.reload()` tanpa perlu me-refresh halaman.
+
+![Tampilan Home Sebelum Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeBeforeDelete.png)
+
+![Tampilan Pop Up Sebelum Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanDeleteNotifBefore.png)
+
+![Tampilan Pop Up Setelah Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanDeleteNotifAfter.png)
+
+![Tampilan Pop Up Setelah Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterDelete.png)
 
 ## Kesimpulan
 ...
