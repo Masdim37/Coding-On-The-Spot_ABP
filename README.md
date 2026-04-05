@@ -1,12 +1,10 @@
 <div align="center">
   <br />
-  <h1>LAPORAN PRAKTIKUM <br>APLIKASI BERBASIS PLATFORM</h1>
+  <h1>LAPORAN PRAKTIKUM<br>APLIKASI BERBASIS PLATFORM</h1>
   <br />
-  <h3> CODING ON THE SPOT <br> MANAJEMEN STOK </h3>
+  <h3>CODING ON THE SPOT<br>MANAJEMEN STOK</h3>
   <br />
   <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Logo_Telkom_University_potrait.png" alt="Logo" width="300"> 
-  <br />
-  <br />
   <br />
   <h3>Disusun Oleh :</h3>
   <p>
@@ -20,13 +18,12 @@
     <strong>Cahyo Prihantoro, S.Kom., M.Eng</strong>
   </p>
   <br />
-  <br />
     <h4>Asisten Praktikum :</h4>
     <strong>Gilang Saputra</strong> <br>
     <strong>Rangga Pradarrell Fathi</strong>
   <br />
   <h3>LABORATORIUM HIGH PERFORMANCE
- <br>FAKULTAS INFORMATIKA <br>UNIVERSITAS TELKOM PURWOKERTO <br>2026</h3>
+ <br>PROGRAM STUDI TEKNIK INFORMATIKA<br>FAKULTAS INFORMATIKA<br>UNIVERSITAS TELKOM PURWOKERTO<br>2026</h3>
 </div>
 
 ---
@@ -34,47 +31,47 @@
 ## 1. Dasar Teori
 
 ### CRUD (Create, Read, Update, Delete)
-Konsep CRUD (Create, Read, Update, Delete) merupakan paradigma fundamental dalam manajemen dan manipulasi data pada sebuah sistem informasi. Secara terminologi, konsep ini merepresentasikan empat operasi dasar yang saling berintegrasi pada basis data (database), yaitu: Create (menciptakan atau menambah data baru), Read (membaca atau menampilkan informasi), Update (memodifikasi data yang telah ada), dan Delete (menghapus rekaman data).
+Konsep CRUD (Create, Read, Update, Delete) merupakan paradigma fundamental dalam manajemen dan manipulasi data pada sebuah sistem informasi. Secara terminologi, konsep ini merepresentasikan empat operasi dasar yang saling berintegrasi pada basis data (database), yaitu : Create (menciptakan atau menambah data baru), Read (membaca atau menampilkan informasi), Update (memodifikasi data yang telah ada), dan Delete (menghapus rekaman data).
 <br>Dalam arsitektur pengembangan perangkat lunak modern, khususnya pada aplikasi berbasis web dan API (Application Programming Interface), operasi CRUD diimplementasikan secara selaras dengan metode protokol komunikasi HTTP (Hypertext Transfer Protocol). Pemetaan standar tersebut meliputi:
-- POST: Digunakan untuk eksekusi fungsi Create.
-- GET: Digunakan untuk eksekusi fungsi Read.
-- PUT / PATCH: Digunakan untuk eksekusi fungsi Update.
-- DELETE: Digunakan untuk eksekusi fungsi Delete.
+- POST : Digunakan untuk eksekusi fungsi Create.
+- GET : Digunakan untuk eksekusi fungsi Read.
+- PUT / PATCH : Digunakan untuk eksekusi fungsi Update.
+- DELETE : Digunakan untuk eksekusi fungsi Delete.
 <br>Penerapan prinsip operasional CRUD sangat esensial karena tidak hanya menstandardisasi tata cara aplikasi berinteraksi dengan basis data, tetapi juga memastikan bahwa siklus pengolahan data berjalan secara sistematis, persisten, dan mudah dipelihara.
 
 ### Arsitektur MVC (Model-View-Controller)
-Model-View-Controller (MVC) adalah paradigma desain arsitektur perangkat lunak yang mengisolasi logika bisnis dari antarmuka pengguna, sehingga menciptakan struktur kode yang modular, skalabel, dan mudah dipelihara. Arsitektur ini membagi aplikasi ke dalam tiga pilar utama:
-- Model: Lapisan abstraksi data yang merepresentasikan struktur logis dari basis data. Model bertanggung jawab penuh atas seluruh transaksi back-end yang melibatkan validasi, penyimpanan, dan pengambilan data (mengeksekusi kueri SQL).
-- View: Lapisan presentasi yang mendefinisikan antarmuka grafis (User Interface). View bertugas menerima data mentah dari Controller dan merendernya menjadi format yang dapat dibaca oleh pengguna (umumnya direpresentasikan melalui sintaks HTML, CSS, dan JavaScript).
-- Controller: Lapisan intermediari (penghubung) yang memfasilitasi komunikasi antara Model dan View. Controller menangkap HTTP Request dari pengguna, memproses instruksi melalui Model yang relevan, dan meneruskan hasilnya untuk ditampilkan oleh View.
+Model-View-Controller (MVC) adalah paradigma desain arsitektur perangkat lunak yang mengisolasi logika bisnis dari antarmuka pengguna, sehingga menciptakan struktur kode yang modular, skalabel, dan mudah dipelihara. Arsitektur ini membagi aplikasi ke dalam tiga pilar utama :
+- Model : Lapisan abstraksi data yang merepresentasikan struktur logis dari basis data. Model bertanggung jawab penuh atas seluruh transaksi back-end yang melibatkan validasi, penyimpanan, dan pengambilan data (mengeksekusi kueri SQL).
+- View : Lapisan presentasi yang mendefinisikan antarmuka grafis (User Interface). View bertugas menerima data mentah dari Controller dan merendernya menjadi format yang dapat dibaca oleh pengguna (umumnya direpresentasikan melalui sintaks HTML, CSS, dan JavaScript).
+- Controller : Lapisan intermediari (penghubung) yang memfasilitasi komunikasi antara Model dan View. Controller menangkap HTTP Request dari pengguna, memproses instruksi melalui Model yang relevan, dan meneruskan hasilnya untuk ditampilkan oleh View.
 
 ### CodeIgniter
-CodeIgniter adalah kerangka kerja (web framework) berbasis bahasa pemrograman PHP yang bersifat open-source, dirancang dengan filosofi small footprint (jejak memori yang sangat minim) untuk menghasilkan performa komputasi tingkat tinggi. Mengadopsi pola MVC, CodeIgniter memfasilitasi pendekatan Rapid Application Development (RAD) yang mempercepat siklus pengembangan perangkat lunak. Beberapa fitur inti yang membuat CodeIgniter andal untuk sistem manajemen adalah:
-- Query Builder Class: Menyediakan antarmuka berbasis Object-Oriented Programming (OOP) untuk membangun kueri basis data dengan lebih aman dan dinamis, menggantikan penulisan SQL manual.
-Keamanan Terpadu: Dilengkapi sistem proteksi bawaan untuk menangkal ancaman siber umum, seperti filterisasi Cross-Site Scripting (XSS) pencegahan SQL Injection, dan proteksi Cross-Site Request Forgery (CSRF).
+CodeIgniter adalah kerangka kerja (web framework) berbasis bahasa pemrograman PHP yang bersifat open-source, dirancang dengan filosofi small footprint (jejak memori yang sangat minim) untuk menghasilkan performa komputasi tingkat tinggi. Mengadopsi pola MVC, CodeIgniter memfasilitasi pendekatan Rapid Application Development (RAD) yang mempercepat siklus pengembangan perangkat lunak. Beberapa fitur inti yang membuat CodeIgniter andal untuk sistem manajemen adalah :
+- Query Builder Class : Menyediakan antarmuka berbasis Object-Oriented Programming (OOP) untuk membangun kueri basis data dengan lebih aman dan dinamis, menggantikan penulisan SQL manual.
+- Keamanan Terpadu : Dilengkapi sistem proteksi bawaan untuk menangkal ancaman siber umum, seperti filterisasi Cross-Site Scripting (XSS) pencegahan SQL Injection, dan proteksi Cross-Site Request Forgery (CSRF).
 - Routing Fleksibel: Kemampuan memetakan URL yang masuk ke Controller spesifik, sehingga menghasilkan struktur tautan (Uniform Resource Locator) yang rapi dan ramah mesin pencari (SEO-friendly).
 <br>Penggunaan CodeIgniter yang menggunakan arsitektur MVC ini memberikan keuntungan signifikan, di antaranya mempercepat proses pengembangan (rapid application development), meminimalisasi penulisan kode yang berulang (boilerplate code), serta memastikan struktur kode lebih rapi sehingga memudahkan proses kolaborasi tim dan pemeliharaan sistem (maintenance) dalam jangka panjang.
 
-### AJAX (Asynchronous JavaScript and XML)
-AJAX (Asynchronous JavaScript and XML) adalah mekanisme eksekusi skrip sisi klien yang memungkinkan antarmuka web untuk berkomunikasi, mengirim, dan menerima data dari peladen (server) di latar belakang secara asinkron tanpa perlu memuat ulang (refresh) keseluruhan halaman. Melalui teknik ini, aplikasi dapat memproses instruksi spesifik—seperti menghapus atau menambah stok menu—secara cepat dan dinamis tanpa mendisrupsi komponen visual lain di layar pengguna, sehingga secara signifikan menghasilkan pengalaman pengguna (User Experience) yang lebih efisien, interaktif, dan responsif.
-
-### JSON (JavaScript Object Notation)
-JSON (JavaScript Object Notation) adalah format serialisasi dan pertukaran data tekstual yang ringan, mudah dibaca oleh manusia, serta mudah diproses oleh mesin. Berfungsi sebagai jembatan komunikasi utama antara frontend (JavaScript) dan backend (seperti PHP), JSON merepresentasikan data dalam bentuk pasangan kunci-nilai (key-value pairs) dan struktur array, yang secara efektif menggantikan protokol lama seperti XML karena ukurannya yang jauh lebih kecil serta proses penguraian (parsing) yang instan oleh peramban web.
+### MySQL
+MySQL adalah Sistem Manajemen Basis Data Relasional (RDBMS) bersumber terbuka (open source) berkinerja tinggi yang memanfaatkan Structured Query Language (SQL) sebagai bahasa interaksi standar untuk mengelola dan memanipulasi data. Sebagai fondasi lapisan penyimpanan (back-end), MySQL mengatur persistensi informasi ke dalam skema dua dimensi berupa tabel-tabel terstruktur yang saling berelasi erat melalui penggunaan kunci utama (Primary Key) dan kunci tamu (Foreign Key) guna mencegah redundansi data. Kepatuhannya terhadap standar operasional ACID (Atomicity, Consistency, Isolation, Durability) menjamin bahwa seluruh transaksi basis data seperti penambahan, pembaruan, maupun penghapusan stok menu tersimpan secara akurat, utuh, dan konsisten, bahkan ketika sistem diakses secara konkuren oleh banyak pengguna.
 
 ### Bootstrap
 Bootstrap adalah kerangka kerja (framework) CSS front-end yang dimanfaatkan untuk merancang tampilan antarmuka web agar lebih responsif, modern, dan efisien tanpa harus menulis kode CSS dari awal. Dengan mengadopsi arsitektur flexbox dan sistem grid 12-kolom, serta menyediakan berbagai komponen siap pakai seperti navigasi, kartu (card), dan tombol, Bootstrap mengotomatisasi aspek tata letak sehingga elemen visual dapat beradaptasi secara dinamis pada berbagai ukuran resolusi layar, mulai dari monitor komputer hingga gawai seluler (mobile-first design).
 
 ### jQuery
-jQuery adalah pustaka (library) JavaScript ringkas yang dirancang khusus untuk mempermudah dan mempercepat manipulasi Document Object Model (DOM), penanganan peristiwa (event handling), serta implementasi AJAX. Penggunaan pustaka ini memungkinkan pengembang untuk menulis perintah JavaScript dengan sintaks deklarasi yang jauh lebih sederhana, bersih, dan mudah dikelola (maintainable) dibandingkan dengan penulisan JavaScript konvensional.
+jQuery adalah pustaka (library) JavaScript ringkas yang dirancang khusus untuk mempermudah dan mempercepat manipulasi Document Object Model (DOM), penanganan peristiwa (event handling), serta implementasi AJAX. Penggunaan library ini memungkinkan pengembang untuk menulis perintah JavaScript dengan sintaks deklarasi yang jauh lebih sederhana, bersih, dan mudah dikelola (maintainable) dibandingkan dengan penulisan JavaScript konvensional.
+
+### AJAX (Asynchronous JavaScript and XML)
+AJAX (Asynchronous JavaScript and XML) adalah mekanisme eksekusi skrip sisi klien yang memungkinkan antarmuka web untuk berkomunikasi, mengirim, dan menerima data dari server di latar belakang secara asinkron tanpa perlu memuat ulang (refresh) keseluruhan halaman. Melalui teknik ini, aplikasi dapat memproses instruksi spesifik seperti menghapus atau menambah stok menu secara cepat dan dinamis tanpa mendisrupsi komponen visual lain di layar pengguna, sehingga secara signifikan menghasilkan pengalaman pengguna (User Experience) yang lebih efisien, interaktif, dan responsif.
+
+### JSON (JavaScript Object Notation)
+JSON (JavaScript Object Notation) adalah format serialisasi dan pertukaran data tekstual yang ringan, mudah dibaca oleh manusia, serta mudah diproses oleh mesin. Berfungsi sebagai jembatan komunikasi utama antara frontend (JavaScript) dan backend (seperti PHP), JSON merepresentasikan data dalam bentuk pasangan kunci-nilai (key-value pairs) dan struktur array, yang secara efektif menggantikan protokol lama seperti XML karena ukurannya yang jauh lebih kecil serta proses penguraian (parsing) yang instan oleh peramban web.
 
 ### DataTables
-DataTables adalah plug-in ekstensi dari jQuery yang mengevolusi elemen tabel HTML statis menjadi tabel data interaktif dan dinamis. Plug-in ini secara otomatis menyediakan algoritma pemrosesan tingkat lanjut seperti fitur pencarian data langsung (live searching), pengurutan multi-kolom (sorting), serta pembagian porsi halaman (pagination). Dalam penerapannya, DataTables sangat efektif digunakan untuk merender data yang diambil dari antarmuka pemrograman aplikasi (API) dalam format JSON, baik yang diproses secara langsung di sisi klien (client-side) maupun yang terintegrasi penuh dengan peladen melalui AJAX (server-side processing).
+DataTables adalah plug-in ekstensi dari jQuery yang mengevolusi elemen tabel HTML statis menjadi tabel data interaktif dan dinamis. Plug-in ini secara otomatis menyediakan algoritma pemrosesan tingkat lanjut seperti fitur pencarian data langsung (live searching), pengurutan multi-kolom (sorting), serta pembagian porsi halaman (pagination). Dalam penerapannya, DataTables sangat efektif digunakan untuk merender data yang diambil dari antarmuka pemrograman aplikasi (API) dalam format JSON, baik yang diproses secara langsung di sisi klien (client-side) maupun yang terintegrasi penuh dengan server melalui AJAX (server-side processing).
 
 ### SweetAlert2
-SweetAlert2 adalah pustaka (library) JavaScript antarmuka pengguna yang dirancang untuk menggantikan kotak dialog peringatan (default alert) bawaan peramban web menjadi pop-up modal notifikasi dan konfirmasi yang jauh lebih elegan, interaktif, dan responsif. Dengan memanfaatkan arsitektur berbasis Promise (.then()), pustaka ini tidak hanya mempercantik tampilan visual aplikasi, tetapi juga memastikan bahwa fungsi lanjutan tingkat kritis—seperti pengiriman perintah penghapusan data ke peladen (server) melalui antarmuka AJAX—hanya akan dieksekusi secara aman setelah sistem mendapatkan konfirmasi persetujuan yang eksplisit dari pengguna.
-
-### MySQL
-MySQL adalah Sistem Manajemen Basis Data Relasional (RDBMS) bersumber terbuka (open-source) berkinerja tinggi yang memanfaatkan Structured Query Language (SQL) sebagai bahasa interaksi standar untuk mengelola dan memanipulasi data. Sebagai fondasi lapisan penyimpanan (back-end), MySQL mengatur persistensi informasi ke dalam skema dua dimensi berupa tabel-tabel terstruktur yang saling berelasi erat melalui penggunaan kunci utama (Primary Key) dan kunci tamu (Foreign Key) guna mencegah redundansi data. Kepatuhannya terhadap standar operasional ACID (Atomicity, Consistency, Isolation, Durability) menjamin bahwa seluruh transaksi basis data—seperti penambahan, pembaruan, maupun penghapusan stok menu—tersimpan secara akurat, utuh, dan konsisten, bahkan ketika sistem diakses secara konkuren oleh banyak pengguna.
+SweetAlert2 adalah pustaka (library) JavaScript antarmuka pengguna yang dirancang untuk menggantikan kotak dialog peringatan (default alert) bawaan peramban web menjadi pop-up modal notifikasi dan konfirmasi yang jauh lebih elegan, interaktif, dan responsif. Dengan memanfaatkan arsitektur berbasis Promise (.then()), pustaka ini tidak hanya mempercantik tampilan visual aplikasi, tetapi juga memastikan bahwa fungsi lanjutan tingkat kritis seperti pengiriman perintah penghapusan data ke server melalui antarmuka AJAX hanya akan dieksekusi secara aman setelah sistem mendapatkan konfirmasi persetujuan yang eksplisit dari pengguna.
 
 ## 2. Stuktur Folder
 ```
@@ -217,7 +214,7 @@ Penjelasan Singkat :
 <br>File menuModel.php adalah file model dalam arsitektur MVC yang bertanggung jawab atas seluruh komunikasi langsung dengan database (MySQL). Model ini digunakan oleh controller (menu.php) untuk melakukan operasi CRUD (Create, Read, Update, Delete) tanpa harus menuliskan query SQL secara manual. Pada file ini dideklarasikan bahwa aplikasi menggunakan tabel menu dengan primary key menuID. Selain itu, atribut allowedFields berfungsi untuk membatasi kolom yang boleh dimanipulasi oleh aplikasi, yaitu namaMenu, kategori, harga, dan stok, sehingga memberikan perlindungan terhadap manipulasi data yang tidak sah (mass assignment protection).
 
 ### index.php (file view halaman utama)
-```php
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -321,7 +318,7 @@ Penjelasan Singkat :
 <br>File index.php merupakan halaman utama (View) yang ditampilkan kepada pengguna dalam sistem manajemen stok. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan antarmuka yang responsif dan modern. Selain itu, halaman ini mengintegrasikan jQuery DataTables (plugin jQuery) untuk menampilkan data dalam bentuk tabel interaktif, serta menggunakan AJAX dan SweetAlert2 untuk menangani operasi data secara asynchronous tanpa perlu melakukan reload halaman.
 
 ### create.php (file view halaman create/tambah stok)
-``` php
+``` html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -391,7 +388,7 @@ Penjelasan Singkat :
 <br>File create.php merupakan halaman View yang digunakan untuk menambahkan data menu baru ke dalam sistem. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan form yang rapi dan responsif. Berbeda dengan metode form konvensional yang menggunakan action="POST", halaman ini memanfaatkan AJAX (Asynchronous JavaScript and XML) untuk mengirim data secara asynchronous tanpa reload halaman, serta menggunakan SweetAlert2 untuk memberikan notifikasi yang lebih interaktif kepada pengguna.
 
 ### edit.php (file view halaman edit stok)
-```php
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -465,7 +462,7 @@ Penjelasan Singkat :
 <br>File edit.php merupakan halaman View yang digunakan untuk mengubah (update) data menu yang sudah ada di dalam database. Halaman ini dibangun menggunakan Bootstrap 5 untuk tampilan form yang rapi dan responsif. Berbeda dengan halaman create, form pada halaman ini sudah terisi otomatis (pre-populated) dengan data yang diambil dari database melalui variabel $menu yang dikirim oleh controller. Proses update dilakukan menggunakan AJAX sehingga tidak memerlukan reload halaman, serta memanfaatkan SweetAlert2 untuk memberikan notifikasi kepada pengguna.
 
 ## 3. Penjelasan Cara Kerja Aplikasi
-Berikut merupakan cara kerja aplikasi berdasarkan masing-masing operasi CRUD (Create, Read, Update, Delete)
+Berikut merupakan cara kerja aplikasi berdasarkan masing-masing operasi CRUD (Create, Read, Update, Delete) :
 
 ### Operasi Read
 Pada operasi Read (menampilkan data), proses terjadi ketika pengguna membuka halaman `index.php`. Di halaman ini, tabel tidak diisi secara statis, melainkan menggunakan DataTables yang diinisialisasi dengan `$('#tabelMenu').DataTable({ ... })`. DataTables secara otomatis mengirimkan request AJAX ke endpoint `/menu/get_data_json` melalui konfigurasi `"ajax": { "url": "/menu/get_data_json" }`. Endpoint ini ditangani oleh controller pada method `get_data_json()`, yang mengambil seluruh data dari database menggunakan `$this->menuModel->findAll()`. Method ini secara internal menjalankan query `SELECT * FROM menu`. Data yang diperoleh kemudian dikembalikan dalam format JSON menggunakan `$this->response->setJSON($data)`. DataTables menerima JSON tersebut dan memetakannya ke kolom tabel sesuai konfigurasi `"columns": [...]`, sehingga data dapat ditampilkan secara dinamis lengkap dengan fitur pencarian, pagination, dan formatting.
@@ -510,7 +507,8 @@ Pada operasi Delete (menghapus data), proses dimulai ketika pengguna menekan tom
 ![Tampilan Pop Up Setelah Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterDelete.png)
 
 ## Kesimpulan
-...
+Aplikasi manajemen stok ini berhasil dibangun menggunakan framework CodeIgniter dengan arsitektur MVC (Model-View-Controller) untuk mengelola alur data secara terstruktur. Implementasi konsep CRUD (Create, Read, Update, Delete) berjalan dengan baik melalui integrasi antara Controller, Model, dan View.
+<br>Pada sisi frontend, penggunaan Bootstrap membantu menghasilkan tampilan yang responsif dan rapi, sedangkan jQuery dan berbagai jQuery plugin seperti DataTables dan SweetAlert2 meningkatkan interaktivitas aplikasi. Data dikirim dan diproses menggunakan format JSON melalui mekanisme AJAX, sehingga setiap operasi dapat dilakukan secara dinamis tanpa reload halaman.
 
 ## Link Video Rekaman Presentasi
 [..]
