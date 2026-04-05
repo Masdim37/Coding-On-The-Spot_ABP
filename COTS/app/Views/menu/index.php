@@ -8,13 +8,13 @@
 </head>
 <body class="bg-light">
 <div class="container mt-5">
-    <div class="card shadow">
+    <div class="card shadow rounded-3 overflow-hidden">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">Daftar Menu Toastopia</h4>
-            <a href="/menu/create" class="btn btn-light btn-sm">Tambah Menu Baru</a>
+            <h4 class="mb-0 fw-bold">Stok Menu Toastopia</h4>
+            <a href="/menu/create" class="btn btn-light btn-sm fw-semibold"> + Tambah Menu Baru</a>
         </div>
         <div class="card-body">
-            <table id="tabelMenu" class="table table-striped table-bordered">
+            <table id="tabelMenu" class="table table-striped table-bordered text-center align-middle">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -25,8 +25,6 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    </tbody>
             </table>
         </div>
     </div>
@@ -42,21 +40,28 @@
 $(document).ready(function() {
     // Inisialisasi DataTables dengan JSON
     let table = $('#tabelMenu').DataTable({
+        "paging": true,   // Menampilkan/menyembunyikan Pagination (Previous/Next)
+        "searching": true, // Menampilkan/menyembunyikan Search bar
+        "info": true,      // Menampilkan/menyembunyikan info entries
+        "lengthChange": true, // Menampilkan/menyembunyikan Show entries
         "ajax": {
             "url": "/menu/get_data_json",
             "dataSrc": ""
         },
+        "columnDefs": [
+            { "className": "text-center", "targets": "_all" }
+        ],
         "columns": [
             { "data": null, "render": function (data, type, row, meta) { return meta.row + 1; } },
             { "data": "namaMenu" },
             { "data": "kategori" },
-            { "data": "harga", "render": $.fn.dataTable.render.number(',', '.', 0, 'Rp ') },
+            { "data": "harga", "render": $.fn.dataTable.render.number(',', '.', 0, 'Rp. ') },
             { "data": "stok" },
             {
                 "data": "menuID",
                 "render": function(data, type, row) {
                     return `<a href="/menu/edit/${data}" class="btn btn-warning btn-sm">Edit</a>
-                            <button class="btn btn-danger btn-sm btn-hapus" data-id="${data}">Hapus</button>`;
+                            <button class="btn btn-danger btn-sm btn-hapus" data-id="${data}" data-nama="${row.namaMenu}">Hapus</button>`;
                 }
             }
         ]
@@ -65,14 +70,15 @@ $(document).ready(function() {
     // Fungsionalitas Hapus (Delete) dengan AJAX & SweetAlert2
     $('#tabelMenu').on('click', '.btn-hapus', function() {
         let id = $(this).data('id');
+        let namaMenu = $(this).data('nama');
         Swal.fire({
-            title: 'Apakah Anda Yakin?',
-            text: "Data yang dihapus tidak bisa dikembalikan!",
+            title: `Apakah Anda yakin ingin menghapus ${namaMenu}?`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, hapus!'
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
