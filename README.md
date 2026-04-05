@@ -103,7 +103,6 @@ COTS/                       # Root direktori utama project
 └── README.md               # Dokumentasi sistem
 ```
 
-
 ## 2. Sourcecode 
 
 ### routes.php (file routing)
@@ -123,8 +122,9 @@ $routes->post('/menu/store', 'menu::store');
 $routes->get('/menu/edit/(:num)', 'menu::edit/$1');
 $routes->post('/menu/update/(:num)', 'menu::update/$1');
 $routes->delete('/menu/delete/(:num)', 'menu::delete/$1');
-
 ```
+Penjelasan singkat :
+<br>File ini bertugas sebagai routing aplikasi. URL yang diakses oleh pengguna (seperti /menu/create atau /menu/store) dipetakan secara spesifik ke fungsi-fungsi (method) yang ada di dalam menu.php (Controller). Rute ini menggunakan berbagai metode HTTP HTTP seperti GET, POST, dan DELETE sesuai dengan prinsip RESTful.
 
 ### menu.php (file controller)
 ```php
@@ -186,6 +186,8 @@ class Menu extends BaseController {
     }
 }
 ```
+Penjelasan Singkat :
+<br>File menu.php adalah file controller yang menghubungkan Model dan View. File ini memuat fungsi-fungsi penting yag digunakan antara lain index() untuk menampilkan halaman awal, get_data_json() untuk mengirim data tabel dalam format JSON ke DataTables, serta fungsi-fungsi CRUD  yang mengembalikan response berbasis JSON agar dapat ditangkap oleh sistem AJAX di sisi client seperti create() untuk menampilkan halaman tanbah stok (create.php), store() untuk menyimpan data ..., edit() untuk ..., update() untuk ..., dan delete() untuk ...
 
 ### menuModel.php (file model)
 ```php
@@ -202,6 +204,8 @@ class MenuModel extends Model{
     protected $allowedFields    = ['namaMenu', 'kategori', 'harga', 'stok'];
 }
 ```
+Penjelasan Singkat :
+<br>File menuModel.php adalah file model yang bertanggung jawab atas seluruh komunikasi langsung dengan basis data (MySQL). pada file ini dideklarasikan bahwa aplikasi akan menggunakan tabel bernama menu dengan primary key menuID. Atribut allowedFields membatasi kolom apa saja yang diizinkan untuk dimanipulasi (diisi atau diubah) oleh aplikasi, yaitu namaMenu, kategori, harga, dan stok, yang berfungsi sebagai sistem keamanan dari manipulasi data ilegal.
 
 ### index.php (file view halaman utama)
 ```php
@@ -304,6 +308,8 @@ $(document).ready(function() {
 </body>
 </html>
 ```
+Penjelasan Singkat :
+<br>File index.php adalah halaman yang dilihat pengguna, dibangun dengan kerangka Bootstrap 5. Halaman ini menginisialisasi library jQuery DataTables untuk memuat data JSON dari server dan menampilkannya sebagai tabel interaktif yang memiliki fitur pencarian serta pagination otomatis. Di file ini juga terdapat script AJAX dan SweetAlert2 yang berfungsi untuk mengeksekusi operasi penghapusan data secara latar belakang (asynchronous) tanpa memuat ulang halaman utama.
 
 ### create.php (file view halaman create/tambah stok)
 ``` php
@@ -372,6 +378,8 @@ $(document).ready(function() {
 </body>
 </html>
 ```
+Penjelasan Singkat : 
+<br>File create.php adalah halaman formulir penambahan menu baru. Daripada menggunakan metode formulir konvensional (action="POST"), halaman ini mencegat event submit menggunakan fungsi JavaScript e.preventDefault(), mengumpulkan data formulir dengan fungsi serialize(), dan mengirimkannya ke URL /menu/store melalui AJAX. Setelah server merespons sukses, sistem menampilkan notifikasi SweetAlert sebelum mengembalikan pengguna ke halaman indeks.
 
 ### edit.php (file view halaman edit stok)
 ```php
@@ -444,6 +452,8 @@ $(document).ready(function() {
 </body>
 </html>
 ```
+Penjelasan Singkat : 
+<br>File edit.php adalah halaman formulir edit data suatu menu. Formulir di halaman ini sudah diisi secara otomatis (pre-populated) dengan rekaman data yang ada pada database (melalui variabel $menu). Saat pengguna menekan "Update Data", skrip AJAX mengirimkan perubahan tersebut ke endpoint pembaruan data /menu/update/ID_MENU.
 
 ## 3. Penjelasan Implementasi Sistem Manajemen Stok
 ...
