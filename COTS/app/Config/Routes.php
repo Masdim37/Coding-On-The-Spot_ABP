@@ -5,7 +5,6 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-// $routes->get('/', 'Home::index');
 
 $routes->get('/', 'menu::index');
 $routes->get('/menu/get_data_json', 'menu::get_data_json');

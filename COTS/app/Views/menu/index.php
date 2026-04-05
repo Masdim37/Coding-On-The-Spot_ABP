@@ -40,10 +40,10 @@
 $(document).ready(function() {
     // Inisialisasi DataTables dengan JSON
     let table = $('#tabelMenu').DataTable({
-        "paging": true,   // Menampilkan/menyembunyikan Pagination (Previous/Next)
-        "searching": true, // Menampilkan/menyembunyikan Search bar
-        "info": true,      // Menampilkan/menyembunyikan info entries
-        "lengthChange": true, // Menampilkan/menyembunyikan Show entries
+        "paging": true,
+        "searching": true,
+        "info": true,
+        "lengthChange": true,
         "ajax": {
             "url": "/menu/get_data_json",
             "dataSrc": ""
