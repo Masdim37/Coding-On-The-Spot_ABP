@@ -507,8 +507,10 @@ Pada operasi Delete (menghapus data), proses dimulai ketika pengguna menekan tom
 ![Tampilan Pop Up Setelah Delete](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterDelete.png)
 
 ## Kesimpulan
-Aplikasi manajemen stok ini berhasil dibangun menggunakan framework CodeIgniter dengan arsitektur MVC (Model-View-Controller) untuk mengelola alur data secara terstruktur. Implementasi konsep CRUD (Create, Read, Update, Delete) berjalan dengan baik melalui integrasi antara Controller, Model, dan View.
+Aplikasi manajemen stok ini dibangun menggunakan framework CodeIgniter dengan arsitektur MVC (Model-View-Controller) untuk mengelola alur data secara terstruktur. Implementasi konsep CRUD (Create, Read, Update, Delete) berjalan melalui integrasi antara Controller, Model, dan View.
 <br>Pada sisi frontend, penggunaan Bootstrap membantu menghasilkan tampilan yang responsif dan rapi, sedangkan jQuery dan berbagai jQuery plugin seperti DataTables dan SweetAlert2 meningkatkan interaktivitas aplikasi. Data dikirim dan diproses menggunakan format JSON melalui mekanisme AJAX, sehingga setiap operasi dapat dilakukan secara dinamis tanpa reload halaman.
 
-## Link Video Rekaman Presentasi
-[..]
+## Link Drive (PPT & Rekaman)
+<a href="https://drive.google.com/drive/folders/1QrOk8uwzijTvqdko1BNwgg7dMzAOK81s?usp=sharing">
+    https://drive.google.com/drive/folders/1QrOk8uwzijTvqdko1BNwgg7dMzAOK81s?usp=sharing
+</a>
