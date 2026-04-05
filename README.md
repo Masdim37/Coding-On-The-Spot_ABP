@@ -473,7 +473,21 @@ Pada operasi Read (menampilkan data), proses terjadi ketika pengguna membuka hal
 ![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
 
 ### Operasi Create
-...
+Pada operasi Create (penambahan data), proses dimulai ketika pengguna mengakses halaman create.php yang berisi formulir input data menu. Form tersebut didefinisikan dengan <form id="formTambah"> dan tidak menggunakan metode submit konvensional. Saat tombol submit ditekan, event tersebut dicegat menggunakan JavaScript $('#formTambah').submit(function(e) { e.preventDefault(); }) sehingga halaman tidak melakukan reload. Data dari seluruh input kemudian dikumpulkan menggunakan $(this).serialize() dan dikirimkan melalui AJAX dengan $.ajax({ url: '/menu/store', type: 'POST' }). Request ini diterima oleh controller pada method store(), yang mengambil data menggunakan $this->request->getPost() lalu menyimpannya ke database melalui $this->menuModel->save([...]). Penyimpanan ini dibatasi oleh properti $allowedFields pada model untuk keamanan. Setelah data berhasil disimpan, controller mengembalikan response JSON yang kemudian ditangkap oleh frontend untuk menampilkan notifikasi menggunakan SweetAlert dan mengarahkan kembali pengguna ke halaman utama.
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHome.png)
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateBefore.png)
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateAfter.png)
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanCreateNotif.png)
+
+![Tampilan Menu Home](https://github.com/Masdim37/Coding-On-The-Spot_ABP/blob/main/Assets/halamanHomeAfterCreate.png)
+
+
+
+
 
 ### Operasi Edit
 ...
